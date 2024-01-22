@@ -11,7 +11,6 @@ RUN apt-get -y update --fix-missing && \
     apt-get --no-install-recommends install -y apt-utils && \
     rm -rf /var/lib/apt/lists/*
 
-
 # Install useful tools and install important libaries
 RUN apt-get -y update && \
     apt-get -y --no-install-recommends install nano wget \
@@ -53,6 +52,9 @@ RUN apt-get update && \
 # Imagick Commit to install
 # https://github.com/Imagick/imagick
 ARG IMAGICK_COMMIT="661405abe21d12003207bc8eb0963fafc2c02ee4"
+
+# install apcu
+RUN pecl install apcu && docker-php-ext-enable apcu
 
 RUN cd /usr/local/src && \
     git clone https://github.com/Imagick/imagick && \
